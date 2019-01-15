@@ -14,10 +14,10 @@ class Conexao
 {
     private static $pdo_compartilhado;
 
-    private $HOST     = 'localhost';
-    private $DBNAME   = 'tasklist';
-    private $USERNAME = 'root';
-    private $PASSWORD = '';
+    public $HOST     = 'localhost';
+    public $DBNAME   = 'tasklist';
+    public $USERNAME = 'root';
+    public $PASSWORD = '';
 
     protected $pdo;
 
@@ -36,5 +36,11 @@ class Conexao
         }
 
         $this->pdo = self::$pdo_compartilhado;
+    }
+
+    public function criaDatabase(){
+        $res = $this->pdo->exec("CREATE DATABASE tasklist");
+
+        return $res === false ? 'Erro: '.$this->pdo->errorInfo()[2] : 'Ok' ;
     }
 }

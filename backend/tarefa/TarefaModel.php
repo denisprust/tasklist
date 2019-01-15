@@ -70,6 +70,43 @@ class TarefaModel extends Conexao{
 
     }
 
+    public function finaliza($id){
+        $sql = " 
+                UPDATE tarefa
+                SET data_conclusao = now()
+                   ,status = '2'
+                WHERE id = ".$id;
+
+        try{
+            $stt = $this->pdo->prepare($sql);
+            $stt->execute();
+            return $stt->rowCount();
+        }
+        catch(\PDOException  $e ){
+            $this->Erro = $e->getCode(). ' - '. $e->getMessage();
+            return false;
+        }
+
+    }
+
+    public function pendente($id){
+        $sql = " 
+                UPDATE tarefa
+                SET status = '1'
+                    ,data_conclusao = null
+                WHERE id = ".$id;
+
+        try{
+            $stt = $this->pdo->prepare($sql);
+            $stt->execute();
+            return $stt->rowCount();
+        }
+        catch(\PDOException  $e ){
+            $this->Erro = $e->getCode(). ' - '. $e->getMessage();
+            return false;
+        }
+    }
+
     public function get($id)
     {
         $str = " SELECT * FROM tarefa WHERE id = ".$id;

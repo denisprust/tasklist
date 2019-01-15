@@ -1,0 +1,17 @@
+.btn.btn-primary,
+.btn.btn-primary:active,
+.btn.btn-primary:hover,
+.btn.btn-primary:after,
+.btn.btn-primary:focus,
+.btn.btn-primary:enabled {
+    background-color: #ff874e;
+    border: none;
+    outline: none;
+}
+
+.linha-concluido{
+    background-color: #0da94538;
+}
+.linha-pendente{
+    background-color: #a9813d47;
+}

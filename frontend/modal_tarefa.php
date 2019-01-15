@@ -12,12 +12,12 @@
                     <input type="hidden" id="tarefaId" value="">
                     <div class="row">
                         <div class="col-12">
-                            <label>Título:</label>
-                            <input type="text" id="titulo" class="form-control">
+                            <label for="titulo">Título:</label>
+                            <input type="text" id="titulo" name="titulo" class="form-control">
                         </div>
                         <div class="col-12">
-                            <label>Descrição:</label>
-                            <input type="text" id="descricao" class="form-control">
+                            <label for="descricao">Descrição:</label>
+                            <textarea id="descricao" name="descricao" class="form-control"></textarea>
                         </div>
                     </div>
 

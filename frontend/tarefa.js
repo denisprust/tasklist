@@ -1,12 +1,16 @@
 var host =  window.location.protocol + "//" +window.location.host;
-var URL_REQUEST = host+'/tasklist2/backend/tarefa';
+var URL_REQUEST = host+'/tasklist/backend/tarefa';
 
 Tarefa = {
     init: function(){
         this.listaTarefas();
+
+        $('[data-toggle="tooltip"]').tooltip();
     }
     , abreModalNovaTarefa: function(){
         var modal = $('#modalTarefa');
+
+        modal.find('.modal-title').html('Nova tarefa');
 
         modal.find('#tarefaId').val('');
         modal.find('#titulo').val('');
@@ -92,6 +96,8 @@ Tarefa = {
         var tarefaId = $(elem).data('id');
         var data = {};
 
+        modal.find('.modal-title').html('Editar tarefa');
+
         data['id']   = tarefaId;
         data['acao'] = 'get';
 
@@ -120,6 +126,37 @@ Tarefa = {
                 console.log(response);
             }
         })
+    }
+    , finalizaTarefa: function(elem,finaliza){
+        var tarefaId = $(elem).data('id');
+        var data = {};
+
+        data['id']   = tarefaId;
+        if(finaliza){
+            data['acao'] = 'finaliza';
+        } else {
+            data['acao'] = 'pendente';
+        }
+
+        $.ajax({
+            url: URL_REQUEST+'/request_tarefa.php',
+            method: 'POST',
+            data: data,
+            success: function(response){
+                response = JSON.parse(response);
+                if(response.success){
+                    Tarefa.listaTarefas();
+                } else {
+                    swal('Atenção!',response.message,'error');
+                }
+
+            },
+            error: function(response){
+                console.log(response);
+            }
+        })
+
+
     }
 
 

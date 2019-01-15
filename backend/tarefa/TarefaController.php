@@ -26,9 +26,11 @@ class TarefaController extends TarefaModel {
             case 'save':
                 return $tarefa->save($request);
                 break;
-            case 'PUT':
-                $tarefa->id = $request['id'];
-                return $tarefa->save($request);
+            case 'finaliza':
+                return $tarefa->finaliza($request['id']);
+                break;
+            case 'pendente':
+                return $tarefa->pendente($request['id']);
                 break;
             case 'delete':
                 return $tarefa->remove($request['id']);
@@ -44,6 +46,20 @@ class TarefaController extends TarefaModel {
         } else {
             $this->Model = new TarefaModel();
             return $this->Model;
+        }
+    }
+
+    public function getDescricaoStatus($status){
+        switch($status){
+            case '1':
+                return 'Pendente';
+                break;
+            case '2':
+                return 'Concluído';
+                break;
+            default:
+                return 'Exclúdo';
+                break;
         }
     }
 
