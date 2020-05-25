@@ -1,6 +1,6 @@
 # tasklist
 
-Sistema de controle de tarefas para o processo seletivo da Supero Tecnologia.
+Sistema de controle de tarefas.
 
 Desenvolvido em PHP, JQuery e Bootstrap.
 
